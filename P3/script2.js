@@ -40,11 +40,13 @@ function init() {
   gl.useProgram(program);
 
   const vertices = new Float32Array([
-    0.0, 0.8, 0.0,   // Top vertex
-   -0.8, -0.8, 0.0,  // Bottom-left vertex
+    0.0,  0.8, 0.0,   // Top vertex
+   -0.8, -0.8, 0.0,   // Bottom-left vertex
     0.8, -0.8, 0.0,   // Bottom-right vertex
-    0.0, 0.8, 0.0,   // Top vertex to close the triangle
-    0.0, -0.8, 0.0   // Midpoint for dividing line
+    0.0,  0.8, 0.0,   // Top vertex (again) to close the triangle
+    0.0, -0.8, 0.0,   // Midpoint for the first dividing line
+   -0.4,  0.0, 0.0,   // Left vertex for the second dividing line
+    0.4,  0.0, 0.0,    // Right vertex for the second dividing line
   ]);
 
   const vertexBuffer = gl.createBuffer();
@@ -57,16 +59,18 @@ function init() {
 
   const uColor = gl.getUniformLocation(program, "uColor");
 
+  // redlines
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  // triangle
   gl.uniform4fv(uColor, [1.0, 0.0, 0.0, 1.0]);
   gl.drawArrays(gl.LINE_LOOP, 0, 4);
 
-  // dividing line
-  gl.uniform4fv(uColor, [0.0, 1.0, 0.0, 1.0]);
+  gl.uniform4fv(uColor, [0.2, 1.0, 0.0, 1.0]);
+
   gl.drawArrays(gl.LINES, 3, 2);
+
+  gl.drawArrays(gl.LINES, 5, 2);
 }
 
 function createShader(gl, type, source) {

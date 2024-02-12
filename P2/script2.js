@@ -68,12 +68,12 @@ function init() {
       return;
     }
     const vertices = new Float32Array([
-      // First triangle (solid red)
+      // ft
       -0.5, -0.5, 0.0, // Bottom left corner
       0.5, -0.5, 0.0, // Bottom right corner
       0.5, 0.5, 0.0, // Top corner
   
-      // Second triangle (solid green)
+      // st
       -0.5, -0.5, 0.0, // Bottom left corner
       0.5, 0.5, 0.0, // Top corner
       -0.5, 0.5, 0.0, // Top right corner
@@ -82,16 +82,16 @@ function init() {
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
   
-    // Draw the first triangle with solid red
+    // ft
     gl.useProgram(program1);
     const aPosition1 = gl.getAttribLocation(program1, "aPosition");
     gl.vertexAttribPointer(aPosition1, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(aPosition1);
-    gl.clearColor(0.0, 0.0, 0.0, 1.0); // Black background
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   
-    // Draw the second triangle with solid green
+    // st
     gl.useProgram(program2);
     const aPosition2 = gl.getAttribLocation(program2, "aPosition");
     gl.vertexAttribPointer(aPosition2, 3, gl.FLOAT, false, 0, 0);
